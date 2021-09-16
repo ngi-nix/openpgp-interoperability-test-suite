@@ -1,0 +1,45 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1631725679,
+        "narHash": "sha256-EXFxVj4rN3IN8o6OSipUH2JczePbRkkUvF+ZMan9xm4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2bb5cbf7f8b99a8d1d6646abe5ab993f6823212f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "sequoia-src": "sequoia-src"
+      }
+    },
+    "sequoia-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1623164157,
+        "narHash": "sha256-Ww2HKR9+A1K92XHHyVXtOsOxvIwEoBhFE9kknoNpaPc=",
+        "owner": "sequoia-pgp",
+        "repo": "openpgp-interoperability-test-suite",
+        "rev": "74cbec55a8823073ebe4efbacd0a1993256c5c7e",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "sequoia-pgp",
+        "ref": "main",
+        "repo": "openpgp-interoperability-test-suite",
+        "type": "gitlab"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
