@@ -33,3 +33,39 @@ OPTIONS:
         --json-out <json-out>            Write results to a JSON file
         --retain-tests <retain-tests>    Prunes the tests, retaining those matching the given regular expression
 ```
+
+### Running
+
+To test the `sqop` implementation for example:
+
+1. Write the following `config.json` file:
+
+```
+{
+  "drivers": [
+    {
+      "path": "sqop"
+    }
+  ],
+  "rlimits": {
+    "DATA": 1073741824
+  }
+}
+```
+
+2. Enter a shell with the desired implementation, `sqop`,
+   for example:
+
+```
+$ nix-shell -p sequoia
+```
+
+3. Generate HTML or JSON outputs:
+
+```
+$ nix run github:ngi-nix/openpgp-interoperability-test-suite \
+  -- --config config.json \
+  --html-out out.html
+  
+# generates a HTML report in out.html
+```
