@@ -3,11 +3,7 @@
 
   inputs = {
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
-
-    # nettle-sys crate seems to use a custom build.rs script that breaks
-    # rustPlatform.buildRustPackage, works fine with importCargo
-    import-cargo.url = "github:edolstra/import-cargo";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     sequoia-src = {
       url = "gitlab:sequoia-pgp/openpgp-interoperability-test-suite/main";
@@ -21,7 +17,6 @@
     { self
     , nixpkgs
     , sequoia-src
-    , import-cargo
     , ...
     }:
     let
@@ -35,47 +30,49 @@
         }
       );
 
-      inherit (import-cargo.builders) importCargo;
-
     in
     {
 
       overlay = final: prev: rec {
 
-        openpgp-test-suite = with final; stdenv.mkDerivation {
-          name = "openpgp-interoperability-test-suite";
-          src = "${sequoia-src}";
+        openpgp-test-suite = with final;
+          let
+            builder = pkgs: pkgs.buildRustCrate.override {
 
-          nativeBuildInputs = [
-            (importCargo { lockFile = "${sequoia-src}/Cargo.lock"; inherit pkgs; }).cargoHome
-            rustc
-            cargo
-            pkg-config
-            nettle
-            clang
-            llvm
-          ];
+              defaultCrateOverrides = pkgs.defaultCrateOverrides // {
 
-          # required by custom build.rs in the nettle-sys crate
-          LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
+                openpgp-interoperability-test-suite = attrs: {
+                  src = "${sequoia-src}";
 
-          # required by the tera crate to load and output to html
-          # these html templates are loaded at runtime
-          prePatch = ''
-            substituteInPlace src/templates.rs \
-              --replace 'templates/**/*' "${sequoia-src}/templates/**/*"
-          '';
+                  nativeBuildInputs = [
+                    pkg-config
+                    nettle
+                    clang
+                  ];
 
-          buildPhase = ''
-            cargo build --release --offline
-          '';
+                  # required by custom build.rs in the nettle-sys crate
+                  LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
 
-          installPhase = ''
-            mkdir -p $out/bin
-            install -Dm775 ./target/release/openpgp-interoperability-test-suite $out/bin/
-          '';
+                  # required by the tera crate to load and output to html.
+                  # these html templates are loaded at runtime.
+                  prePatch = ''
+                    substituteInPlace src/templates.rs \
+                      --replace 'templates/**/*' "${sequoia-src}/templates/**/*"
+                  '';
 
-        };
+                };
+
+              };
+
+            };
+
+            cargoNix = import ./Cargo.nix {
+              inherit pkgs;
+              buildRustCrateForPkgs = builder;
+            };
+
+          in
+          cargoNix.rootCrate.build;
 
       };
 

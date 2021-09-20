@@ -1,39 +1,23 @@
 {
   "nodes": {
-    "import-cargo": {
-      "locked": {
-        "lastModified": 1594305518,
-        "narHash": "sha256-frtArgN42rSaEcEOYWg8sVPMUK+Zgch3c+wejcpX3DY=",
-        "owner": "edolstra",
-        "repo": "import-cargo",
-        "rev": "25d40be4a73d40a2572e0cc233b83253554f06c5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "import-cargo",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1631452463,
-        "narHash": "sha256-/BMbXjACbkemEB0cULa4/DFNAHusavOzRJL/VX2FIuM=",
+        "lastModified": 1631725679,
+        "narHash": "sha256-EXFxVj4rN3IN8o6OSipUH2JczePbRkkUvF+ZMan9xm4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e85f0175e3effe9ba191d66c09e8f1b7d6362d5e",
+        "rev": "2bb5cbf7f8b99a8d1d6646abe5ab993f6823212f",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-21.05",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "root": {
       "inputs": {
-        "import-cargo": "import-cargo",
         "nixpkgs": "nixpkgs",
         "sequoia-src": "sequoia-src"
       }
