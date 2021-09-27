@@ -1,12 +1,59 @@
 {
   "nodes": {
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1623875721,
+        "narHash": "sha256-A8BU7bjS5GirpAUv4QA+QnJ4CceLHkcXdRp4xITDB0s=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "f7e004a55b120c02ecb6219596820fcd32ca8772",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "gosop-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1605614465,
+        "narHash": "sha256-KJIeP+ryi/Qk4F2Q7vwY+UhRdlXOSTC6xb4uLfbfpgQ=",
+        "owner": "ProtonMail",
+        "repo": "gosop",
+        "rev": "046feea9867a570681c0ebb99ebeb23467ea6aba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ProtonMail",
+        "repo": "gosop",
+        "type": "github"
+      }
+    },
+    "gpgme-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1612528518,
+        "narHash": "sha256-mKfUS5NkpfyzANo2wYwxi+3HOIuGvLKDVNZ8KzbOVqc=",
+        "owner": "sequoia-pgp",
+        "repo": "gpgme-sop",
+        "rev": "1038cf4f8a72f08906c181b20f45f4459519815f",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "sequoia-pgp",
+        "repo": "gpgme-sop",
+        "type": "gitlab"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1631725679,
-        "narHash": "sha256-EXFxVj4rN3IN8o6OSipUH2JczePbRkkUvF+ZMan9xm4=",
+        "lastModified": 1632383286,
+        "narHash": "sha256-WF49nWAN8saKDjXvXTiIIJRPDHgTkTYgTUMabnN+tRc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2bb5cbf7f8b99a8d1d6646abe5ab993f6823212f",
+        "rev": "a3a23d9599b0a82e333ad91db2cdc479313ce154",
         "type": "github"
       },
       "original": {
@@ -16,10 +63,48 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1628186154,
+        "narHash": "sha256-r2d0wvywFnL9z4iptztdFMhaUIAaGzrSs7kSok0PgmE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "06552b72346632b6943c8032e57e702ea12413bf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "gosop-src": "gosop-src",
+        "gpgme-src": "gpgme-src",
         "nixpkgs": "nixpkgs",
-        "sequoia-src": "sequoia-src"
+        "rust-overlay": "rust-overlay",
+        "sequoia-src": "sequoia-src",
+        "sqop-src": "sqop-src"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1632708925,
+        "narHash": "sha256-pXBOtAxYy7treLokyH5Y/RnMeaok1QmZoNlIhfZkcz0=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "054fd85fb221e4adddb019d530155754ada524ee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "sequoia-src": {
@@ -36,6 +121,22 @@
         "owner": "sequoia-pgp",
         "ref": "main",
         "repo": "openpgp-interoperability-test-suite",
+        "type": "gitlab"
+      }
+    },
+    "sqop-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1623848468,
+        "narHash": "sha256-cuAsQD53WXvoAi5s3AP1kr6rwGC7Tmm9YJSRw3GU+pQ=",
+        "owner": "sequoia-pgp",
+        "repo": "sequoia-sop",
+        "rev": "d326f3cf23859923038a34d4192b338838058318",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "sequoia-pgp",
+        "repo": "sequoia-sop",
         "type": "gitlab"
       }
     }
